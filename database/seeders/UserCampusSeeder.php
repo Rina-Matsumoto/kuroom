@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DateTime;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
-class ReservedSeeder extends Seeder
+class UserCampusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,9 @@ class ReservedSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('reserved')->insert([
+        DB::table('user_campuses')->insert([
                 'user_id' => '1',
-                'reservation_id' => '1',
+                'campus_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

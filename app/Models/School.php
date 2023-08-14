@@ -8,15 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class School extends Model
 {
     use HasFactory;
-    public $incrementing = false;
-    
-    public function classrooms()
-    {
-        return $this->hasMany(Classroom::class);
-    }
-    
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
 }

@@ -11,26 +11,6 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class);
-    }
-    
-    public function comments()
-    {
-        return $this->hasMany(Commennt::class);
-    }
-    
-    public function school()
-    {
-        return $this->belongsTo(School::class);
-    }
-    
-    public function campus()
-    {
-        return $this->belongsTo(Campus::class);
-    }
 
     /**
      * The attributes that are mass assignable.

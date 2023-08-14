@@ -16,18 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            SchoolSeeder::class,
-            CampusSeeder::class,
-            DaySeeder::class,
-            ClassroomSeeder::class,
-            EmptyRoomSeeder::class,
-            ReservationSeeder::class,
-            CommentSeeder::class,
-            UserSeeder::class,
-            ReservedSeeder::class,
-            CommentedSeeder::class,
-            
-        ]);
+        $this->call(UserSeeder::class);
+        $this->call(DaySeeder::class);
+        $this->call(SchoolSeeder::class);
+        $this->call(CampusSeeder::class);
+        $this->call(ClassroomSeeder::class);
+        $this->call(CommentSeeder::class);
+        $this->call(EmptyRoomSeeder::class);
+        $this->call(UserCommentSeeder::class);
+        $this->call(UserCampusSeeder::class);
+        $this->call(UserSchoolSeeder::class);
+        $this->call(ReservationSeeder::class);
     }
 }
