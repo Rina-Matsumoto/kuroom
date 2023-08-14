@@ -4,10 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DateTime;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
-class CommentedSeeder extends Seeder
+class UserCommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class CommentedSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('commented')->insert([
+        DB::table('user_comments')->insert([
                 'user_id' => '1',
                 'comment_id' => '1',
                 'created_at' => new DateTime(),

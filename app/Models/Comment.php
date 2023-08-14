@@ -8,19 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    
-     public function emptyRooms()
-    {
-        return $this->hasMany(EmptyRoom::class);
-    }
-    
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    
-    public function commenteds()
-    {
-        return $this->hasMany(Commented::class);
-    }
 }

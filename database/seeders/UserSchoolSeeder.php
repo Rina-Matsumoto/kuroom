@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 
-class DaySeeder extends Seeder
+class UserSchoolSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,9 @@ class DaySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('days')->insert([
-                'day' => '月',
+        DB::table('user_schools')->insert([
+                'user_id' => '1',
+                'school_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

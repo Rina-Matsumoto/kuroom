@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use DateTime;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class SchoolSeeder extends Seeder
 {
@@ -16,10 +16,10 @@ class SchoolSeeder extends Seeder
      */
     public function run()
     {
-         DB::table('schools')->insert([
-                'school' => '金沢大学',
+        DB::table('schools')->insert([
+                'school_name' => '金沢大学',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-        ]);
+         ]);
     }
 }
