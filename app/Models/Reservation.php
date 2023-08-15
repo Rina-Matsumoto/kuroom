@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
+    
+    public function emptyRooms()   
+    {
+        return $this->hasMany(EmptyRoom::class);  
+    }
+    
+    public function users()   
+    {
+        return $this->hasMany(User::class);  
+    }
 }

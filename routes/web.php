@@ -9,8 +9,9 @@ use App\Http\Controllers\EmptyRoomController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ReservedController;
-use App\Http\Controllers\CommentedController;
+use App\Http\Controllers\UserCommentController;
+use App\Http\Controllers\UserSchoolController;
+use App\Http\Controllers\UserCampusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ Route::get('/empty_rooms', [EmptyRoomController::class, 'index']);
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/comments', [CommentController::class, 'index']);
 Route::get('/reservations', [ReservationController::class, 'index']);
-Route::get('/reserveds', [ReservedController::class, 'index']);
-Route::get('/commenteds', [CommentedController::class, 'index']);
+Route::get('/user_comments', [UserCommentController::class, 'index']);
+Route::get('/user_schools', [UserSchoolController::class, 'index']);
+Route::get('/user_campuses', [UserCampusController::class, 'index']);
 
 
