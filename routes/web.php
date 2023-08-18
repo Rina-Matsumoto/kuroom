@@ -1,42 +1,33 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\CampusController;
-use App\Http\Controllers\DayController;
-use App\Http\Controllers\ClassroomController;
-use App\Http\Controllers\EmptyRoomController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserCommentController;
-use App\Http\Controllers\UserSchoolController;
-use App\Http\Controllers\UserCampusController;
+use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    require __DIR__.'/auth.php';
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->middleware(['auth:admin', 'verified'])->name('dashboard');
+
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/profile', [ProfileOfAdminController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileOfAdminController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    require __DIR__.'/admin.php';
 });
-Route::get('/schools', [SchoolController::class, 'index']);
-Route::get('/campuses', [CampusController::class, 'index']);
-Route::get('/days', [DayController::class, 'index']);
-Route::get('/classrooms', [ClassroomController::class, 'index']);
-Route::get('/empty_rooms', [EmptyRoomController::class, 'index']);
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/comments', [CommentController::class, 'index']);
-Route::get('/reservations', [ReservationController::class, 'index']);
-Route::get('/user_comments', [UserCommentController::class, 'index']);
-Route::get('/user_schools', [UserSchoolController::class, 'index']);
-Route::get('/user_campuses', [UserCampusController::class, 'index']);
-
-
