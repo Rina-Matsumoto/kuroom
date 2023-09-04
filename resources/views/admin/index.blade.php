@@ -24,24 +24,24 @@
             </thead>
             <tbody>
                 @foreach($times as $time)
-                    <tr>
-                        <td>{{$time->time}}</td>
-                            @foreach($days as $day)
-                                <td><a style="width:100%; height:100%; display:block;"  href="/admin/show/{{$day->id}}/{{ $time->id}}"></a></td>
-                            @endforeach
+                <tr>
+                    <td>{{$time->time}}</td>
+                        @foreach($days as $day)
+                            <td><a style="width:100%; height:100%; display:block;"  href="/admin/show/{{$day->id}}/{{ $time->id}}"></a></td>
+                        @endforeach
                 @endforeach
-                    </tr>
+                </tr>
             </tbody>
         </table>
         <table style="width: 200px; height:200px;">
-    <tr>
-        <td>
-            <a style="width:100%; height:100%; display:block;" href="http://yokano-jp.blogspot.jp/">
-            </a>
-        </td>
-    </tr>
-</table>
-<a href='/admin/create'>追加</a>
+            <tr>
+                <td>
+                    <a style="width:100%; height:100%; display:block;" href="http://yokano-jp.blogspot.jp/">
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <a href='/admin/create'>追加</a>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
