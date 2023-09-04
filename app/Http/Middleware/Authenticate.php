@@ -13,23 +13,17 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected string $user_route  = 'user.login';
-    protected string $admin_route = 'admin.login';
+    protected  $user_route  = 'user.login';
+    protected  $admin_route = 'admin.login';
     
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
-        
-        if (! $request->expectsJson()) {
-            if($request->is('admin/*')) return route('admin.login');
-            return route('login');
-        }
-        
-        if (Auth::guard($guard)->check()) {
-            if($guard == 'admin') return redirect(RouteServiceProvider::ADMIN_HOME);
-            return redirect(RouteServiceProvider::HOME);
+         if (! $request->expectsJson()) {
+            if (Route::is('admin.*')) {
+                return route($this->admin_route);
+            } else {
+                return route($this->user_route);
+            }
         }
     }
 }

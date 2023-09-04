@@ -14,6 +14,11 @@ class EmptyRoom extends Model
         return $this->belongsTo(Day::class);  
     }
     
+    public function times()   
+    {
+        return $this->belongsTo(Time::class);  
+    }
+    
     public function posts()   
     {
         return $this->belongsTo(Classroom::class);  
