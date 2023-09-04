@@ -9,15 +9,18 @@ use App\Http\Controllers\User\Auth\PasswordController;
 use App\Http\Controllers\User\Auth\PasswordResetLinkController;
 use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\UserClassroomController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/index', function () {
-    return view('user.index');
-})->middleware(['auth'])->name('index');
+Route::get('/index', [UserClassroomController::class ,'index'])->middleware(['auth:users', 'verified'])->name('index');
+Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
+Route::get('/create', [SubjectController::class ,'create']);
+Route::post('/create', [SubjectController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,7 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:user')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
