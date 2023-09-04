@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use DateTime;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,10 +17,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-                'name' => 'RM',
-                'email' => 'aiueo@abcd.jp',
-                'password' => Hash::make('ken371327'),
+        DB::table('admins')->insert([
+                'name' => 'a大学',
+                'email' => 'eee@efgh.jp',
+                'classroom_id' => '1',
+                'password' => Hash::make('00000000'),
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
