@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+    public function index(Day $day, Time $time, Subject $subject)
+    {
+        return view('user.index')->with(['subjects' => $subject->where([
+            ["day_id", "=", $day->id], ["time_id", "=", $time->id]
+            ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
+    }
+    
     public function create(Day $day, Time $time)
     {
         return view('user.create')->with(['days' => $day->get(), 'times' => $time->get()]);

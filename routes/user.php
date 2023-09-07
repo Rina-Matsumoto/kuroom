@@ -15,20 +15,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth:users', 'verified'])->name('dashboard');
 
-Route::get('/index', [UserClassroomController::class ,'index'])->middleware(['auth:users', 'verified'])->name('index');
-Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
-Route::get('/create', [SubjectController::class ,'create']);
-Route::post('/create', [SubjectController::class, 'store']);
-
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:users')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
+        Route::get('/index', [UserClassroomController::class ,'index'])->name('index');
+        Route::get('/index/{day}/{time}', [SubjectController::class ,'index']);
+        Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
+        Route::get('/create', [SubjectController::class ,'create']);
+        Route::post('/create', [SubjectController::class, 'store']);
+});
 
-Route::middleware('guest:user')->group(function () {
+Route::middleware('guest:users')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -52,7 +52,7 @@ Route::middleware('guest:user')->group(function () {
                 ->name('password.store');
 });
 
-Route::middleware('auth:user')->group(function () {
+Route::middleware('auth:users')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
 

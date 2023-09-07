@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         if (Auth::guard('users')->check() && $request->routeIs('user.*')) {
-            return redirect(RouteServiceProvider::HOME);
+            return redirect(RouteServiceProvider::USER_HOME);
         }
         if (Auth::guard('admins')->check() && $request->routeIs('admin.*')) {
             return redirect(RouteServiceProvider::ADMIN_HOME);
