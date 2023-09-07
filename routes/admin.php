@@ -16,20 +16,17 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admins', 'verified'])->name('dashboard');
 
-Route::get('/index', [ClassroomController::class ,'index'])->middleware(['auth:admins', 'verified'])->name('index');
-
-Route::get('/rooms', [ClassroomController::class, 'index'])->middleware(['auth:admins', 'verified'])->name('rooms');
-Route::get('/show/{day}/{time}', [ClassroomController::class ,'show']);
-Route::get('/create', [ClassroomController::class ,'create']);
-Route::post('/create', [ClassroomController::class, 'store']);
-
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth:admins')->group(function () {
         Route::get('/profile', [ProfileOfAdminController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileOfAdminController::class, 'destroy'])->name('profile.destroy');
-    });
+        Route::get('/index', [ClassroomController::class ,'index'])->name('index');
+        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show']);
+        Route::get('/create', [ClassroomController::class ,'create']);
+        Route::post('/create', [ClassroomController::class, 'store']);
+});
 
-Route::middleware('guest:admin')->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -53,7 +50,7 @@ Route::middleware('guest:admin')->group(function () {
                 ->name('password.store');
 });
 
-Route::middleware('auth:admin')->group(function () {
+Route::middleware('auth:admins')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 

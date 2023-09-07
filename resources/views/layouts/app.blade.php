@@ -16,9 +16,9 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @if(auth('admins')->user())
+            @if(Auth::guard('admins'))
                 @include('layouts.admin_navigation')
-            @elseif(auth('users')->user())
+            @else
                 @include('layouts.navigation')
             @endif
 
