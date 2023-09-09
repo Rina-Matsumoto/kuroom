@@ -11,6 +11,7 @@ use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
 use App\Http\Controllers\UserClassroomController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -22,10 +23,14 @@ Route::middleware('auth:users')->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::get('/index', [UserClassroomController::class ,'index'])->name('index');
-        Route::get('/index/{day}/{time}', [SubjectController::class ,'index']);
+        Route::get('/timetable', [UserClassroomController::class ,'timetable'])->name('timetable');
+        Route::get('/index/{day}/{time}', [UserClassroomController::class ,'index']);
+        Route::get('/showtimetable/{day}/{time}', [UserClassroomController::class ,'showtimetable']);
         Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
         Route::get('/create', [SubjectController::class ,'create']);
         Route::post('/create', [SubjectController::class, 'store']);
+        Route::get('/comment/{classroom}', [CommentController::class, 'index'])->name('comment');
+        Route::post('/add', [CommentController::class, 'add'])->name('add');
 });
 
 Route::middleware('guest:users')->group(function () {

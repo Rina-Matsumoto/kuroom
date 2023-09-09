@@ -11,7 +11,7 @@ class SubjectController extends Controller
 {
     public function index(Day $day, Time $time, Subject $subject)
     {
-        return view('user.index')->with(['subjects' => $subject->where([
+        return view('user.index.{day}.{time}')->with(['subjects' => $subject->where([
             ["day_id", "=", $day->id], ["time_id", "=", $time->id]
             ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
     }

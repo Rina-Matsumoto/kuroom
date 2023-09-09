@@ -16,7 +16,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
-                        {{ __('時間割表') }}
+                        {{ __('空き教室') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.timetable')" :active="request()->routeIs('user.timetable')">
+                        {{ __('時間割') }}
                     </x-nav-link>
                 </div>
             </div>
