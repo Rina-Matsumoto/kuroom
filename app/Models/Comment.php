@@ -9,6 +9,14 @@ class Comment extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'comment',
+        'user_id',
+        'time_id',
+        'day_id',
+        'classroom_id'
+    ];
+    
     public function emptyRooms()   
     {
         return $this->belongsTo(EmptyRoom::class);  
@@ -17,5 +25,15 @@ class Comment extends Model
     public function userComments()   
     {
         return $this->belongsTo(UserComment::class);  
+    }
+    
+    public function users()   
+    {
+        return $this->belongsTo(User::class);  
+    }
+    
+    public function classrooms()   
+    {
+        return $this->belongsTo(Classroom::class);  
     }
 }

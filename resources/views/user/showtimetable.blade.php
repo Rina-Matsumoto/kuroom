@@ -3,24 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>教室一覧</title>
+        <title>時間割</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
         <div class="content">
-            <div id="classrooms">
-                <h3>教室一覧</h3>
-                @foreach ($classrooms as $classroom)
-                    <a href="/user/comment/{{$classroom->id}}"><p>{{ $classroom->classroom_name }}</p></a>
+            <div id="subjects">
+                <h3>時間割</h3>
+                @foreach ($subjects as $subject)
+                    <p>{{ $subject->subject_name }}</p>    
                 @endforeach
             </div>
         </div>
         <div class="footer">
-            @if(!empty($classroom))
-            <a href="/user/comment/{{$classroom->id}}">コメントする</a>
-            @endif
-            <a href="/user/index">戻る</a>
+            <a href="/user/timetable">戻る</a>
         </div>
     </body>
 </html>

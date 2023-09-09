@@ -46,4 +46,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(Day::class);  
     }
+    
+    public function comments()   
+    {
+        return $this->hasMany(Comment::class);  
+    }
 }

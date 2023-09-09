@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>空き教室</title>
+        <title>時間割表</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <!-- Bootstrap CSS -->
@@ -10,7 +10,7 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            空き教室
+            時間割表
         </x-slot>
     <body>
         <table class="table table-bordered" style="width: 100%; height:100%;">
@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{$time->time}}</td>
                             @foreach($days as $day)
-                                <td><a style="width:100%; height:100%; display:block;"  href="/user/show/{{$day->id}}/{{ $time->id}}"></a></td>
+                                <td><a style="width:100%; height:100%; display:block;"  href="/user/showtimetable/{{$day->id}}/{{ $time->id}}"></a></td>
                             @endforeach
                 @endforeach
                     </tr>
@@ -41,6 +41,7 @@
                 </td>
             </tr>
         </table>
+        <a href='/user/create'>追加</a>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
