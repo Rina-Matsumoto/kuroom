@@ -14,12 +14,11 @@
     </div>
 </div>
 
-<form method="POST" action="{{route('user.add')}}">
+<form method="POST" action="">
     @csrf
     <div class="comment-container row justify-content-center">
         <div class="input-group comment-area">
-            <textarea class="form-control" id="comment" name="comment" placeholder="push massage (shift + Enter)"
-                aria-label="With textarea"></textarea>
+            <textarea class="form-control" id="comment" name="comment" aria-label="With textarea"></textarea>
             <button type="submit" id="submit" class="btn btn-outline-primary comment-btn">Submit</button>
         </div>
     </div>

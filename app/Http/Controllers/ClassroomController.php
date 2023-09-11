@@ -29,6 +29,7 @@ class ClassroomController extends Controller
     
     public function store(Request $request, Classroom $classroom, Day $day, Time $time)
     {
+        $user = Auth::user();
         $input = $request['classroom'];
         $classroom->fill($input)->save();
         return back()->with('message', $classroom->classroom_name . 'を登録しました！');
