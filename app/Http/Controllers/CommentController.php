@@ -17,19 +17,17 @@ class CommentController extends Controller
     
     public function index(Comment $comment, Classroom $classroom)
     {
-        return view('user.comment')->with(['comments' => $comment->where("classroom_id", "=", $classroom->id)->get()]);
+        return view('user.comment')->with(['comments' => $comment->where("classroom_id", "=", $classroom->id)->get(), 'classrooms' => $classroom->get()]);
     }
     
-    public function add(Request $request, Classroom $classroom)
+    public function store(Request $request, Classroom $classroom)
     {
-        
-        
-        
-        $input = $request['comment'];
-        $commnet->fill($input)->save();
-        return redirect()->route('comment');
-        
-        
-       
+         $input = $request->only('user_id', 'comment');
+         $comment = new Comment();
+         $comment->user_id = Auth::id();
+         $comment->classroom_id = $classroom->id;
+         $comment->comment = $input["comment"];
+         $comment->save();
+         return redirect('/user/comment/' . $classroom->id);
     }
 }

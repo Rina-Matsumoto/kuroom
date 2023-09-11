@@ -12,6 +12,7 @@ use App\Http\Controllers\User\Auth\VerifyEmailController;
 use App\Http\Controllers\UserClassroomController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ClassroomController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -30,7 +31,7 @@ Route::middleware('auth:users')->group(function () {
         Route::get('/create', [SubjectController::class ,'create']);
         Route::post('/create', [SubjectController::class, 'store']);
         Route::get('/comment/{classroom}', [CommentController::class, 'index'])->name('comment');
-        Route::post('/add', [CommentController::class, 'add'])->name('add');
+        Route::post('/comment/{classroom}', [CommentController::class, 'store']);
 });
 
 Route::middleware('guest:users')->group(function () {
