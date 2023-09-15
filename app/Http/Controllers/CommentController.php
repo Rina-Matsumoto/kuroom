@@ -28,6 +28,14 @@ class CommentController extends Controller
          $comment->classroom_id = $classroom->id;
          $comment->comment = $input["comment"];
          $comment->save();
-         return redirect('/user/comment/' . $classroom->id);
+         return redirect('/user/comment/' . $classroom->id)->with(['classrooms' => $classroom->get()]);
+    }
+    
+    public function getData(Request $request, Classroom $classroom)
+    {
+        $result = $request->classroom_id;
+        $comments = Comment::orderBy('created_at', 'desc')->where("classroom_id", "=", $result)->get();
+        $json = ["comments" => $comments];
+        return response()->json($json);
     }
 }

@@ -21,9 +21,11 @@ Route::middleware('auth:admins')->group(function () {
         Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileOfAdminController::class, 'destroy'])->name('profile.destroy');
         Route::get('/index', [ClassroomController::class ,'index'])->name('index');
-        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show']);
+        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show'])->name('show');
+        Route::get('/show/{day}/{time}/{classroom}/edit', [ClassroomController::class ,'edit'])->name('edit');
         Route::get('/create', [ClassroomController::class ,'create']);
         Route::post('/create', [ClassroomController::class, 'store']);
+        Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
 });
 
 Route::middleware('guest')->group(function () {
