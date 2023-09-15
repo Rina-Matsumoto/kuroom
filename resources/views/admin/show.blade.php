@@ -11,8 +11,7 @@
         <div class="content">
                 <h3>教室一覧</h3>
                 @foreach ($classrooms as $classroom)
-                    <p>{{ $classroom->classroom_name }}</p>
-                        <a href="{{ route('admin.edit', ['day' => $classroom->day_id, 'time' =>$classroom->time_id, 'classroom' =>$classroom->id])}}">編集する</a>
+                    <p>{{ $classroom->classroom_name }}</p>    
                 @endforeach
         </div>
         <div class="footer">

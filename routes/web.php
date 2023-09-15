@@ -4,6 +4,10 @@ use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 
+Route::get('/',function(){
+    return view('user.welcome');
+});
+
 Route::prefix('admin')->name('admin.')->group(function(){
     require __DIR__.'/admin.php';
 });
