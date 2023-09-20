@@ -22,6 +22,22 @@ class ClassroomController extends Controller
             ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
     }
     
+    public function edit(Day $day, Time $time, Classroom $classroom)
+    {
+        // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
+        return view('admin.edit')->with(['classrooms' => $classroom->where([
+            ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["id", "=", $classroom->id]
+            ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
+    }
+    
+    public function update(Request $request, Classroom $classroom)
+    {
+        $input_classroom = $request['classroom'];
+        $classroom->fill($input_classroom)->save();
+    
+        return redirect()->route('admin.show', ['day' => $classroom->day_id, 'time' => $classroom->time_id]); 
+    }
+    
     public function create(Day $day, Time $time)
     {
         return view('admin.create')->with(['days' => $day->get(), 'times' => $time->get()]);
@@ -29,7 +45,6 @@ class ClassroomController extends Controller
     
     public function store(Request $request, Classroom $classroom, Day $day, Time $time)
     {
-        $user = Auth::user();
         $input = $request['classroom'];
         $classroom->fill($input)->save();
         return back()->with('message', $classroom->classroom_name . 'を登録しました！');

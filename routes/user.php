@@ -31,7 +31,9 @@ Route::middleware('auth:users')->group(function () {
         Route::get('/create', [SubjectController::class ,'create']);
         Route::post('/create', [SubjectController::class, 'store']);
         Route::get('/comment/{classroom}', [CommentController::class, 'index'])->name('comment');
-        Route::post('/comment/{classroom}', [CommentController::class, 'store']);
+        Route::post('/comment/{classroom}', [CommentController::class, 'store'])->name('store');
+        Route::get('/result/ajax/{classroom}', [CommentController::class, 'getData'])->name('store');
+        Route::get('/result/ajax/{classroom}', [CommentController::class, 'getData']);
 });
 
 Route::middleware('guest:users')->group(function () {
