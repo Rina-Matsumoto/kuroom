@@ -28,7 +28,7 @@ Route::middleware('auth:admins')->group(function () {
         Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:admins')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
