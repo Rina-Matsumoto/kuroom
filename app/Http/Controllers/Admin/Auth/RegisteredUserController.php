@@ -38,14 +38,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Admin::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'admin_number' => ['required']
         ]);
+        
 
         $admin = Admin::create([
             'name' => $request->name,
-            'email' => $request->email,
             'password' => Hash::make($request->password),
+            'admin_number' => $request->admin_number
         ]);
 
         event(new Registered($admin));
