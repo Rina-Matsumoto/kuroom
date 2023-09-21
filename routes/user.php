@@ -26,7 +26,7 @@ Route::middleware('auth:users')->group(function () {
         Route::get('/index', [UserClassroomController::class ,'index'])->name('index');
         Route::get('/timetable', [UserClassroomController::class ,'timetable'])->name('timetable');
         Route::get('/index/{day}/{time}', [UserClassroomController::class ,'index']);
-        Route::get('/showtimetable/{day}/{time}', [UserClassroomController::class ,'showtimetable']);
+        Route::get('/showsubject/{day}/{time}', [UserClassroomController::class ,'showsubject']);
         Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
         Route::get('/create', [SubjectController::class ,'create']);
         Route::post('/create', [SubjectController::class, 'store']);
