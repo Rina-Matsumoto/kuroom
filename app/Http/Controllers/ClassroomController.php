@@ -6,6 +6,7 @@ use App\Models\Classroom;
 use App\Models\Day;
 use App\Models\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassroomController extends Controller
 {
@@ -16,9 +17,10 @@ class ClassroomController extends Controller
     
     public function show(Day $day, Time $time, Classroom $classroom)
     {
+         $admin = Auth::user();
         // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
         return view('admin.show')->with(['classrooms' => $classroom->where([
-            ["day_id", "=", $day->id], ["time_id", "=", $time->id]
+            ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["admin_id", "=", $admin->id]
             ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
     }
     
@@ -45,6 +47,8 @@ class ClassroomController extends Controller
     
     public function store(Request $request, Classroom $classroom, Day $day, Time $time)
     {
+        Auth::user();
+        $classroom -> admin_id=Auth::user()->id;
         $input = $request['classroom'];
         $classroom->fill($input)->save();
         return back()->with('message', $classroom->classroom_name . 'を登録しました！');

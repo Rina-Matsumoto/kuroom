@@ -6,6 +6,7 @@ use App\Models\Subject;
 use App\Models\Day;
 use App\Models\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -23,6 +24,8 @@ class SubjectController extends Controller
     
     public function store(Request $request, Subject $subject, Day $day, Time $time)
     {
+        Auth::user();
+        $subject -> user_id=Auth::user()->id;
         $input = $request['subject'];
         $subject->fill($input)->save();
         return back()->with('message', $subject->subject_name . 'を登録しました！');

@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{$time->time}}</td>
                             @foreach($days as $day)
-                                <td><a style="width:100%; height:100%; display:block;"  href="/user/showtimetable/{{$day->id}}/{{ $time->id}}"></a></td>
+                                <td><a style="width:100%; height:100%; display:block;"  href="/user/showsubject/{{$day->id}}/{{ $time->id}}"></a></td>
                             @endforeach
                 @endforeach
                     </tr>
