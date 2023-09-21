@@ -17,9 +17,6 @@
             </div>
         </div>
         <div class="footer">
-            @if(!empty($classroom))
-            <a href="/user/comment/{{$classroom->id}}">コメントする</a>
-            @endif
             <a href="/user/index">戻る</a>
         </div>
     </body>
