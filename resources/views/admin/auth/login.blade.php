@@ -7,9 +7,9 @@
 
         <!-- Admin Number -->
         <div>
-            <x-input-label for="name" :value="__('Number')" />
-            <x-text-input id="admin_number" class="block mt-1 w-full" type="text" name="admin_number" :value="old('admin_number')" required autofocus autocomplete="admin_number" />
-            <x-input-error :messages="$errors->get('admin_number')" class="mt-2" />
+            <x-input-label for="name" :value="__('Id')" />
+            <x-text-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')" required autofocus autocomplete="id" />
+            <x-input-error :messages="$errors->get('id')" class="mt-2" />
         </div>
 
         <!-- Password -->
