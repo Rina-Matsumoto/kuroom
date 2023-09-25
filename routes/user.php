@@ -13,6 +13,7 @@ use App\Http\Controllers\UserClassroomController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -20,9 +21,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:users', 'verified'])->name('dashboard');
 
 Route::middleware('auth:users')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
         Route::get('/index', [UserClassroomController::class ,'index'])->name('index');
         Route::get('/timetable', [UserClassroomController::class ,'timetable'])->name('timetable');
         Route::get('/index/{day}/{time}', [UserClassroomController::class ,'index']);
@@ -77,7 +78,7 @@ Route::middleware('auth:users')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+    // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     
     
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -86,3 +87,5 @@ Route::middleware('auth:users')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
+
+Route::put('password', [PasswordController::class, 'update'])->name('password.update');
