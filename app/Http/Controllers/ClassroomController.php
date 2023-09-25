@@ -47,10 +47,20 @@ class ClassroomController extends Controller
     
     public function store(Request $request, Classroom $classroom, Day $day, Time $time)
     {
-        Auth::user();
-        $classroom -> admin_id=Auth::user()->id;
-        $input = $request['classroom'];
-        $classroom->fill($input)->save();
-        return back()->with('message', $classroom->classroom_name . 'を登録しました！');
+        $a = Classroom::where([
+            'classroom_name' => $request['classroom']['classroom_name'],
+            'day_id' => $request['classroom']['day_id'],
+            'time_id' => $request['classroom']['time_id'],
+        ])->exists();
+        
+        if($a){
+             return back()->with('message', "登録済みです");
+        }else{
+            Auth::user();
+            $classroom -> admin_id=Auth::user()->id;
+            $input = $request['classroom'];
+            $classroom->fill($input)->save();
+            return back()->with('message', $classroom->classroom_name . 'を登録しました！');
+        }
     }
 }
