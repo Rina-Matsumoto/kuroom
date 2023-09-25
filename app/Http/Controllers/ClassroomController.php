@@ -47,10 +47,15 @@ class ClassroomController extends Controller
     
     public function store(Request $request, Classroom $classroom, Day $day, Time $time)
     {
+        if(empty($request['classroom']['classroom_name'])){
+            return back()->with('message', "教室名を入力してください");
+        }
+        Auth::user();
         $a = Classroom::where([
             'classroom_name' => $request['classroom']['classroom_name'],
             'day_id' => $request['classroom']['day_id'],
             'time_id' => $request['classroom']['time_id'],
+            'admin_id' =>Auth::user()->id
         ])->exists();
         
         if($a){

@@ -1,20 +1,21 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-    ],
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
 
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
-    },
-
-    plugins: [require('@tailwindcss/forms')],
-};
+mix
+  .js('resources/js/app.js', 'public/js')
+  .sass('resources/sass/app.scss', 'public/css')
+  .options({
+    processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.config.js')],
+  });
