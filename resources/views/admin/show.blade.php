@@ -3,19 +3,29 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <title>教室一覧</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
         <div class="content">
-                <h3>教室一覧</h3>
+                <h3 class="relative w-full text-2xl font-semibold">教室一覧</h3>
                 @foreach ($classrooms as $classroom)
-                    <p>{{ $classroom->classroom_name }}</p>    
+                    <div class="flex flex-row space-x-8">
+                        <div class="flex mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                            <p>{{ $classroom->classroom_name }}</p>  
+                        </div>
+                    </div>
+                    <form action="{{ route('admin.classroom.destroy', ['id'=>$classroom->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger mb-8">削除</button>
+                    </form>
                 @endforeach
         </div>
         <div class="footer">
-            <a href="/admin/index">戻る</a>
+            <button onclick="location.href='/admin/index'" class="flex mt-24 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</button>
         </div>
     </body>
 </html>

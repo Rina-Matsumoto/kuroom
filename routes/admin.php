@@ -21,12 +21,15 @@ Route::middleware('auth:admins')->group(function () {
         Route::patch('/profile', [ProfileOfAdminController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileOfAdminController::class, 'destroy'])->name('profile.destroy');
         Route::get('/index', [ClassroomController::class ,'index'])->name('index');
-        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show']);
+        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show'])->name('show');
+        Route::get('/show/{day}/{time}/{classroom}/edit', [ClassroomController::class ,'edit'])->name('edit');
         Route::get('/create', [ClassroomController::class ,'create']);
         Route::post('/create', [ClassroomController::class, 'store']);
+        Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
+        Route::post('/destroy{id}', [ClassroomController::class, 'destroy'])->name('classroom.destroy');
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest:admins')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -67,8 +70,8 @@ Route::middleware('auth:admins')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
+ Route::put('password', [PasswordController::class, 'update'])->name('password.update');

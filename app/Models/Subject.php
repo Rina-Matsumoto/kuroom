@@ -21,4 +21,9 @@ class Subject extends Model
     {
         return $this->belongsTo(User::class);  
     }
+    
+    public function deleteSubjectById($id)
+    {
+        return $this->destroy($id);
+    }
 }
