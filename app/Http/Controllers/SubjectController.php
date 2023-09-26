@@ -22,6 +22,15 @@ class SubjectController extends Controller
         return view('user.create')->with(['days' => $day->get(), 'times' => $time->get()]);
     }
     
+    public function showsubject(Day $day, Time $time, Subject $subject)
+    {
+        $user = Auth::user();
+        // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
+        return view('user.showsubject')->with(['subjects' => $subject->where([
+            ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["user_id", "=", $user->id]
+            ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
+    }
+    
     public function store(Request $request, Subject $subject, Day $day, Time $time)
     {
         if(empty($request['subject']['subject_name'])){
@@ -44,5 +53,12 @@ class SubjectController extends Controller
             $subject->fill($input)->save();
             return back()->with('message', $subject->subject_name . 'を登録しました！');
         }
+    }
+    
+    public function destroy($id)
+    {
+        $subject = Subject::find($id);
+        $subject->delete();
+        return back()->with('message', $subject->subject_name . 'を削除しました！');
     }
 }
