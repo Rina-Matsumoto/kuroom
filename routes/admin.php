@@ -26,6 +26,7 @@ Route::middleware('auth:admins')->group(function () {
         Route::get('/create', [ClassroomController::class ,'create']);
         Route::post('/create', [ClassroomController::class, 'store']);
         Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
+        Route::post('/destroy{id}', [ClassroomController::class, 'destroy'])->name('classroom.destroy');
 });
 
 Route::middleware('guest:admins')->group(function () {
