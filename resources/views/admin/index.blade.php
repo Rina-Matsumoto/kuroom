@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <x-admin-layout>
         <x-slot name="header">
@@ -33,15 +34,7 @@
                 </tr>
             </tbody>
         </table>
-        <table style="width: 200px; height:200px;">
-            <tr>
-                <td>
-                    <a style="width:100%; height:100%; display:block;" href="http://yokano-jp.blogspot.jp/">
-                    </a>
-                </td>
-            </tr>
-        </table>
-        <a href='/admin/create'>追加</a>
+        <button onclick="location.href='/admin/create'" class="flex text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">追加</button>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
