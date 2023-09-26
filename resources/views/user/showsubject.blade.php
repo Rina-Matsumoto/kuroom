@@ -17,11 +17,14 @@
                             <div id="subjects">
                                 @foreach ($subjects as $subject)
                                     <h1 class="mx-auto mb-8 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl border border-gray-300 p-6 rounded-lg">{{ $subject->subject_name }}</h1>    
-                                @endforeach
                             </div>
                         </div>
-                        <div class="footer">
-                             <!--<a href="/user/timetable" class="inline-flex items-center mt-4 font-semibold text-blue-600 lg:mb-0 hover:text-neutral-600">戻る</a>-->
+                            <div class="footer">
+                                <form action="{{ route('user.subject.destroy', ['id'=>$subject->id]) }}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="btn btn-danger mb-8">削除</button>
+                                </form>
+                                @endforeach
                         <button onclick="location.href='/user/timetable'" class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</button>
                         </div>
                     </div>

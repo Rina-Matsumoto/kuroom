@@ -27,14 +27,13 @@ Route::middleware('auth:users')->group(function () {
         Route::get('/index', [UserClassroomController::class ,'index'])->name('index');
         Route::get('/timetable', [UserClassroomController::class ,'timetable'])->name('timetable');
         Route::get('/index/{day}/{time}', [UserClassroomController::class ,'index']);
-        Route::get('/showsubject/{day}/{time}', [UserClassroomController::class ,'showsubject']);
+        Route::get('/showsubject/{day}/{time}', [SubjectController::class ,'showsubject']);
         Route::get('/show/{day}/{time}', [UserClassroomController::class ,'show']);
         Route::get('/create', [SubjectController::class ,'create']);
         Route::post('/create', [SubjectController::class, 'store']);
         Route::get('/comment/{classroom}', [CommentController::class, 'index'])->name('comment');
         Route::post('/comment/{classroom}', [CommentController::class, 'store'])->name('store');
-        Route::get('/result/ajax/{classroom}', [CommentController::class, 'getData'])->name('store');
-        Route::get('/result/ajax/{classroom}', [CommentController::class, 'getData']);
+        Route::post('/destroy{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
 });
 
 Route::middleware('guest:users')->group(function () {
