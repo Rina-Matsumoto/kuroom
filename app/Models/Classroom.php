@@ -51,4 +51,9 @@ class Classroom extends Model
     {
         return $this->hasMany(Comment::class);  
     }
+    
+    public function deleteSubjectById($id)
+    {
+        return $this->destroy($id);
+    }
 }

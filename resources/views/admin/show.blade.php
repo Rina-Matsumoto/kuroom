@@ -18,6 +18,10 @@
                             <p>{{ $classroom->classroom_name }}</p>  
                         </div>
                     </div>
+                    <form action="{{ route('admin.classroom.destroy', ['id'=>$classroom->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger mb-8">削除</button>
+                    </form>
                 @endforeach
         </div>
         <div class="footer">

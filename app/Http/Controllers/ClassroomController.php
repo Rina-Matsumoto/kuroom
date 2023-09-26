@@ -68,4 +68,12 @@ class ClassroomController extends Controller
             return back()->with('message', $classroom->classroom_name . 'を登録しました！');
         }
     }
+    
+     
+    public function destroy($id)
+    {
+        $classroom = Classroom::find($id);
+        $classroom->delete();
+        return back()->with('message', $classroom->classroom_name . 'を削除しました！');
+    }
 }
