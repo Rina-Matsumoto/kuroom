@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->integer('admin_number');
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('admin_id')->constrained('admins');
         });
     }
 
@@ -25,8 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            //
+        Schema::table('users', function (Blueprint $table) {
+             $table->dropForeign('users_admin_id_foreign');
+             $table->dropColumn('admin_id');
         });
     }
 };
