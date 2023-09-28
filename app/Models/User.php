@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);  
     }
+    
+    public function admins()   
+    {
+        return $this->belongsTo(Admin::class);  
+    }
 }
