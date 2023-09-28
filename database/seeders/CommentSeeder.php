@@ -18,6 +18,8 @@ class CommentSeeder extends Seeder
     {
         DB::table('comments')->insert([
                 'comment' => '自習中',
+                'user_id' => '1',
+                'classroom_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

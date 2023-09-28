@@ -18,8 +18,9 @@ class SubjectSeeder extends Seeder
     {
          DB::table('subjects')->insert([
                 'subject_name' => '歴史',
-                'school_id' => '1',
-                'campus_id' =>'1',
+                'time_id' => '1',
+                'day_id' => '1',
+                'user_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);

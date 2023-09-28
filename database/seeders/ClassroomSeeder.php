@@ -19,7 +19,9 @@ class ClassroomSeeder extends Seeder
          DB::table('classrooms')->insert([
                 'classroom_name' => 'A101',
                 'school_id' => '1',
-                'campus_id' =>'1',
+                'day_id' => '1',
+                'time_id' => '1',
+                'admin_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
