@@ -19,10 +19,10 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
                 'name' => 'RM',
-                'email' => 'aa@aa',
+                'email' => 'aaa@aaa',
                 'password' => Hash::make('00000000'),
                 'subject_id' => '1',
-                'admin_id' => '1',
+                'admin_id' => '21',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
