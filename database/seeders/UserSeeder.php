@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'aaa@aaa',
                 'password' => Hash::make('00000000'),
                 'subject_id' => '1',
-                'admin_id' => '21',
+                'admin_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
          ]);
