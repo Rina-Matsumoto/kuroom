@@ -82,13 +82,20 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">@auth{{ Auth::user()->name }}@endauth</div>
-                <div class="font-medium text-sm text-gray-500">@auth{{ Auth::user()->email }}@endauth</div>
+                <div class="font-medium text-base text-gray-800">ようこそ、@auth{{ Auth::user()->name }}さん@endauth</div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('user.profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('user.index')">
+                    {{ __('空き教室') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('user.timetable')">
+                    {{ __('時間割') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

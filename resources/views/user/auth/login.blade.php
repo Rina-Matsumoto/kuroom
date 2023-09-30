@@ -42,7 +42,7 @@
             @endif
 
             <!--　ログイン画面にregisterボタンを追加　-->
-            <x-primary-button class="py-5"><a href="{{ route('user.register') }}">{{ __('Register') }}</a></x-primary-button>
+            <x-primary-button class="ml-3"><a href="{{ route('user.register') }}">{{ __('Register') }}</a></x-primary-button>
 
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}

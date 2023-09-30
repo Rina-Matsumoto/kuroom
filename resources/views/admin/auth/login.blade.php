@@ -7,7 +7,7 @@
 
         <!-- Admin Number -->
         <div>
-            <x-input-label for="name" :value="__('Id')" />
+            <x-input-label for="name" :value="__('ID')" />
             <x-text-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')" required autofocus autocomplete="id" />
             <x-input-error :messages="$errors->get('id')" class="mt-2" />
         </div>
@@ -40,7 +40,7 @@
             @endif
 
             <!--　ログイン画面にregisterボタンを追加　-->
-            <x-primary-button class="py-5"><a href="{{ route('admin.register') }}">{{ __('Register') }}</a></x-primary-button>
+            <x-primary-button class="ml-3"><a href="{{ route('admin.register') }}">{{ __('Register') }}</a></x-primary-button>
 
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
