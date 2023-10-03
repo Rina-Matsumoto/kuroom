@@ -13,7 +13,15 @@
             <ul>
                 
                     @foreach ($comments as $comment)
-                        <p class="text-xs @if($comment->user_identifier === session('user_identifier')) text-right @endif">{{$comment->created_at}}</p>
+                        <div class="text-xs @if($comment->user_identifier === session('user_identifier')) text-right @endif">
+                            {{$comment->created_at}}
+                            @if($comment->user_identifier === session('user_identifier'))
+                                <form action="{{ route('user.comment.destroy', ['id'=>$comment->id]) }}" method="POST">
+                                      @csrf
+                                      <button type="submit">削除</button>
+                                </form>
+                            @endif
+                        </div>
                         <li class="w-max mb-3 p-2 rounded-lg bg-blue-200 relative @if($comment->user_identifier === session('user_identifier')) self ml-auto @else other @endif">
                             <div class="p-2 rounded-lg bg-blue-200">
                                 {{$comment->comment}}

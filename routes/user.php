@@ -33,6 +33,7 @@ Route::middleware('auth:users')->group(function () {
         Route::post('/create', [SubjectController::class, 'store']);
         Route::get('/comment/{classroom}', [CommentController::class, 'index'])->name('comment');
         Route::post('/comment/{classroom}', [CommentController::class, 'store'])->name('store');
+        Route::post('/comment{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
         Route::post('/destroy{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
 });
 
