@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Admin::class);  
     }
+    
+    public function reserves()   
+    {
+        return $this->belongsTo(Reserve::class);  
+    }
 }

@@ -5,6 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\NewPasswordController;
 //use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 
+Route::get('/admin/reservation', function () {
+    return view('admin.reservation');
+});
+
+
+
+
 Route::get('/', function () {
     return view('user.auth.login');
 });
@@ -13,9 +20,7 @@ Route::get('/admin', function () {
     return view('admin.auth.login');
 });
 
-Route::get('/aaa', function () {
-    return view('user.welcome');
-});
+
 
  Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
                 ->name('password.reset');
