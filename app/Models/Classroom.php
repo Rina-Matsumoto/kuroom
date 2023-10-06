@@ -14,7 +14,9 @@ class Classroom extends Model
         'day_id',
         'time_id',
         'school_id',
-        'campus_id'
+        'campus_id',
+        'reservable_date',
+        'min_reserve_num',
     ];
     
     public function emptyRooms()   

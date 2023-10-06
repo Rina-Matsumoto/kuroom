@@ -13,6 +13,7 @@ use App\Http\Controllers\UserClassroomController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,9 @@ Route::middleware('auth:users')->group(function () {
         Route::post('/comment/{classroom}', [CommentController::class, 'store'])->name('store');
         Route::post('/comment{id}', [CommentController::class, 'destroy'])->name('comment.destroy');
         Route::post('/destroy{id}', [SubjectController::class, 'destroy'])->name('subject.destroy');
+        Route::get('/reserve/{classroom}', [ReserveController::class ,'index'])->name('reserve.index');
+        Route::post('/reserve/{classroom}', [ReserveController::class ,'show'])->name('reserve.show');
+        Route::post('/complete/{classroom}', [ReserveController::class ,'store'])->name('reserve.store');
 });
 
 Route::middleware('guest:users')->group(function () {

@@ -5,9 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reservation extends Model
+class Reserve extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'reserve_date',
+        'day_id',
+        'time_id',
+        'user_name',
+        'user_email',
+        'text',
+        'admin_id',
+    ];
     
     public function emptyRooms()   
     {

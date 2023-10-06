@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classroom;
 use App\Models\Day;
 use App\Models\Time;
+use App\Models\Reserve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
