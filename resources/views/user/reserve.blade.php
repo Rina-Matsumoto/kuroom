@@ -12,37 +12,70 @@
           @csrf
             <div class="mb-3">
                 <label  class="form-label">【1】予約日を選択</label>
-                <input type="date" class="form-control" name="reserve[reserve_date]" value="{{old('reserve[reserve_date]')}}">
+                <input type="date" class="form-control" name="reserve[reserve_date]" value="{{old('reserve.reserve_date')}}">
+                @error('reserve.reserve_date')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
             </div>
+            
             <div class="mb-3">
                 <label class="form-label">【2】時間を選択</label>
-                <select class="form-select" name="reserve[time_id]" value="{{old('reserve[time_id]')}}" aria-label="Default select example">
-                    <option selected>時間</option>
+                <select class="form-select" name="reserve[time_id]">
                     @foreach($times as $time)
-                        <option value = "{{$time->id}}" name="reserve[time_id]">{{$time->time}}</option>
+                        <option value = "{{$time->id}}" name="reserve[time_id]" @if(old('reserve.time_id')==$time->id) selected @endif>{{$time->time}}</option>
                     @endforeach
                 </select>
+                @error('reserve.time_id')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
             </div>
+            
             <div class="mb-3">
                 <label class="form-label">【3】曜日を選択</label>
-                <select class="form-select" name="reserve[day_id]" value="{{old('reserve[day_id]')}}" aria-label="Default select example">
-                    <option selected>曜日</option>
+                <select class="form-select" name="reserve[day_id]">
                      @foreach($days as $day)
-                　　　　<option value="{{$day->id}}" name="reserve[day_id]">{{$day->day}}</option>
+                　　　　<option value="{{$day->id}}" name="reserve[day_id]" @if(old('reserve.day_id')==$day->id) selected @endif>{{$day->day}}</option>
                 　 　 @endforeach
                 </select>
+                @error('reserve.day_id')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
             </div>
+          　
           　<div class="mb-3">
             　<label class="form-label">【4】ユーザー名</label>
             　<input type="text" class="form-control"  name="reserve[user_name]" value="{{Auth::user()->name}}" aria-describedby="emailHelp">
+          　     @error('reserve.user_name')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
           　</div>
+          　
           　<div class="mb-3">
             　<label class="form-label">【5】Email</label>
             　<input type="email" class="form-control"name="reserve[user_email]" value="{{Auth::user()->email}}">
+          　     @error('reserve.user_email')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
           　</div>
+          　
           　<div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">【6】利用目的</label>
-              <textarea class="form-control"name="reserve[text]" value="{{old('reserve[text]')}}" rows="3"></textarea>
+              <textarea class="form-control"name="reserve[text]" rows="3">{{old('reserve.text')}}</textarea>
+                @error('reserve.text')
+                  <div class="alert alert-danger">
+                    {{$message}}
+                  </div>
+                @enderror
             </div>
             <div class="d-grid gap-2 d-md-block">
               <button class="btn btn-primary" type="submit">確認画面へ</button>

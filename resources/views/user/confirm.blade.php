@@ -24,22 +24,30 @@
               <th scope="row">日時</th>
               <td>{{$input['reserve']['reserve_date']}}</td>
             </tr>
+            
             <tr>
               <th scope="row">時間</th>
               <td>{{$input['reserve']['time_id']}}</td>
             </tr>
+            
+            <!--コントローラーでdaysテーブルのインスタンスを入力値のday_idで取得制限し、$daysとしてconfirm.bladeに渡している-->
             <tr>
               <th scope="row">曜日</th>
-              <td>{{$input['reserve']['day_id']}}</td>
+              @foreach($days as $day)
+          　　    <td>{{$day->day}}</td>
+          　   @endforeach
             </tr>
+            
             <tr>
               <th scope="row">ユーザー名</th>
               <td>{{$input['reserve']['user_name']}}</td>
             </tr>
+            
             <tr>
               <th scope="row">Email</th>
               <td colspan="2">{{$input['reserve']['user_email']}}</td>
             </tr>
+            
             <tr>
               <th scope="row">目的</th>
               <td>{{$input['reserve']['text']}}</td>
