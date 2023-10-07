@@ -9,12 +9,15 @@ use App\Models\Reserve;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReserveRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ReserveController extends Controller
 {
     public function index(Day $day, Time $time, $classroom)
     {
-        return view('user.reserve')->with(['days' => $day->get(), 'times' => $time->get(), 'classroom' => $classroom]);  
+        $tomorrow = Carbon::tomorrow();
+        $max = Carbon::parse('+1 week');
+        return view('user.reserve')->with(['days' => $day->get(), 'times' => $time->get(), 'classroom' => $classroom, 'tomorrow' => $tomorrow, 'max' => $max]);  
     }
     
     public function show(ReserveRequest $request, $classroom , Day $day)
