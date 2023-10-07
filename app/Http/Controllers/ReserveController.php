@@ -7,6 +7,7 @@ use App\Models\Time;
 use App\Models\Classroom;
 use App\Models\Reserve;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReserveRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ReserveController extends Controller
@@ -16,10 +17,13 @@ class ReserveController extends Controller
         return view('user.reserve')->with(['days' => $day->get(), 'times' => $time->get(), 'classroom' => $classroom]);  
     }
     
-    public function show(Request $request, $classroom)
+    public function show(ReserveRequest $request, $classroom , Day $day)
     {
         $input = $request->all();
-        return view('user.confirm')->with(['classroom' => $classroom, 'input' => $input]);
+        // パラメータとしてclassroom、入力値のinput、daysテーブルのデータをinputで受け取った$input['reserve']['day_id']で絞ったデータをviewに渡す
+        return view('user.confirm')->with(['classroom' => $classroom, 'input' => $input, 'days' => $day->where([
+            ["id", "=", $input['reserve']['day_id']]
+            ])->get()]);
     }
     
     public function store(Request $request, $classroom, Reserve $reserve)

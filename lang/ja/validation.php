@@ -247,6 +247,12 @@ return [
         'updated_at' => '更新日',
         'username' => 'ユーザー名',
         'year' => '年',
+        'reserve.reserve_date' => '日付',
+        'reserve.time_id' => '時間',
+        'reserve.day_id' => '曜日',
+        'reserve.user_name' => '名前',
+        'reserve.user_email' => 'email',
+        'reserve.text' => '利用目的',
     ],
 
 ];
