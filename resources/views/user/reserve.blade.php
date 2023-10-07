@@ -12,7 +12,7 @@
           @csrf
             <div class="mb-3">
                 <label  class="form-label">【1】予約日を選択</label>
-                <input type="date" class="form-control" name="reserve[reserve_date]" value="{{old('reserve.reserve_date')}}">
+                <input type="date" class="form-control" name="reserve[reserve_date]" value="{{old('reserve.reserve_date')}}" min={{$tomorrow}} max={{$max}}>
                 @error('reserve.reserve_date')
                   <div class="alert alert-danger">
                     {{$message}}
