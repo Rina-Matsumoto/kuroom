@@ -253,6 +253,8 @@ return [
         'reserve.user_name' => '名前',
         'reserve.user_email' => 'email',
         'reserve.text' => '利用目的',
+        'classroom.classroom_name' => '教室名',
+        'classroom.min_reserve_num' => '人数',
     ],
 
 ];

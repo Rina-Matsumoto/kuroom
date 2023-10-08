@@ -24,10 +24,14 @@ class UserClassroomController extends Controller
     public function show(Day $day, Time $time, Classroom $classroom)
     {
         $admin = Auth::user();
-        // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
-        return view('user.show')->with(['classrooms' => $classroom->where([
-            ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["admin_id", "=", $admin->admin_id]
-            ])->get(), 'days' => $day->get(), 'times' => $time->get()]);
+        return view('user.show')->with([
+            // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
+            'classrooms' => $classroom->where([
+                ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["admin_id", "=", $admin->admin_id]
+            ])->get(), 
+            'days' => $day->get(), 
+            'times' => $time->get(),
+        ]);
     }
     
     /**public function create(Day $day, Time $time)

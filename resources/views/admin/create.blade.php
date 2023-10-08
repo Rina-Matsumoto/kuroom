@@ -21,29 +21,36 @@
             @csrf
             <div class="mb-3">
                 　<label class="form-label">教室名</label>
-                　<input type="text" class="form-control" name="classroom[classroom_name]" aria-describedby="emailHelp">
+                　<input type="text" class="form-control" name="classroom[classroom_name]">
+                　@error('classroom.classroom_name')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                  @enderror
             </div>
+            
             <div class="mb-3">
                 <label  class="form-label">予約最低人数</label>
-                <select class="form-select" name="classroom[min_reserve_num]" aria-label="Default select example">
-                  <option selected>人数</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+                <input type="text" class="form-control" name="classroom[min_reserve_num]">
+                @error('classroom.min_reserve_num')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
             </div>
+            
             <div class="row">
               　<div class="col">
+              　    <label class="form-label">曜日</label>
                     <select class="form-select" name="classroom[day_id]" aria-label="Default select example">
-                        <option selected>曜日</option>
                          @foreach($days as $day)
                     　　　　<option value="{{$day->id}}" name="classroom[day_id]">{{$day->day}}</option>
                     　　 @endforeach
                     </select>
               　</div>
               　<div class="col">
+              　     <label class="form-label">時間</label>
                     <select class="form-select" name="classroom[time_id]" aria-label="Default select example">
-                        <option selected>時間</option>
                         @foreach($times as $time)
                             <option value = "{{$time->id}}" name="classroom[time_id]">{{$time->time}}</option>
                         @endforeach
