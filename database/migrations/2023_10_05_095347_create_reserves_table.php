@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('user_email');
             $table->text('text');
             $table->foreignId('admin_id');
+            $table->foreignId('user_id');
+            $table->foreignId('classroom_id');
             $table->timestamps();
         });
     }

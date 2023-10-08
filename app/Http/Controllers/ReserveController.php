@@ -23,10 +23,23 @@ class ReserveController extends Controller
     public function show(ReserveRequest $request, $classroom , Day $day)
     {
         $input = $request->all();
-        // パラメータとしてclassroom、入力値のinput、daysテーブルのデータをinputで受け取った$input['reserve']['day_id']で絞ったデータをviewに渡す
-        return view('user.confirm')->with(['classroom' => $classroom, 'input' => $input, 'days' => $day->where([
-            ["id", "=", $input['reserve']['day_id']]
-            ])->get()]);
+        Auth::user();
+        $a = Reserve::where([
+            'reserve_date' => $input['reserve']['reserve_date'],
+            'time_id' => $input['reserve']['time_id'],
+            'admin_id' => Auth::user()->id,
+            'classroom_id' => $input['reserve']['classroom_id'],
+        ])->exists();
+        
+        if($a){
+             return back()->with('flash_message', "既に予約が入っています");
+        }else{
+             // パラメータとしてclassroom、入力値のinput、daysテーブルのデータをinputで受け取った$input['reserve']['day_id']で絞ったデータをviewに渡す
+            return view('user.confirm')->with(['classroom' => $classroom, 'input' => $input, 'days' => $day->where([
+                ["id", "=", $input['reserve']['day_id']]
+                ])->get()]);
+            }
+       
     }
     
     public function store(Request $request, $classroom, Reserve $reserve)
@@ -38,6 +51,8 @@ class ReserveController extends Controller
             // 認証しているユーザー情報（の中のadmin_id）を取得し、インスタンス化した$reserveのadmin_idカラムにいれる
             $user = Auth::user();
             $reserve->admin_id = $user->id;
+            $reserve->user_id = $user->id;
+            $reserve->classroom_id = $classroom;
             $form = $request['reserve'];
             $reserve->fill($form)->save();
             return view('user.complete');

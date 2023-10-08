@@ -17,6 +17,8 @@ class Reserve extends Model
         'user_email',
         'text',
         'admin_id',
+        'user_id',
+        'classroom_id'
     ];
     
     public function emptyRooms()   
