@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>教室予約画面</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   </head>
   <body>
       <h1>予約受付</h1>
+       <script>
+            @if (session('flash_message'))
+                $(function () {
+                        toastr.success('{{ session('flash_message') }}');
+                });
+            @endif
+        </script>
         <form method = "post" action = "/user/reserve/{{$classroom}}">
           @csrf
+            <input type="hidden" name="reserve[user_id]" value="{{Auth::user()->id}}">
+            <input type="hidden" name="reserve[classroom_id]" value="{{$classroom}}">
+            
             <div class="mb-3">
                 <label  class="form-label">【1】予約日を選択</label>
                 <input type="date" class="form-control" name="reserve[reserve_date]" value="{{old('reserve.reserve_date')}}" min={{$tomorrow}} max={{$max}}>
@@ -82,6 +95,7 @@
               <a class="btn btn-primary" href="/user/index">戻る</a>
             </div>
         </form>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

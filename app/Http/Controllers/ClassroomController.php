@@ -60,13 +60,13 @@ class ClassroomController extends Controller
         ])->exists();
         
         if($a){
-             return back()->with('message', "登録済みです");
+             return back()->with('flash_message', "登録済みです");
         }else{
             Auth::user();
             $classroom -> admin_id=Auth::user()->id;
             $input = $request['classroom'];
             $classroom->fill($input)->save();
-            return back()->with('message', $classroom->classroom_name . 'を登録しました！');
+            return back()->with('flash_message', $classroom->classroom_name . 'を登録しました！');
         }
     }
     
@@ -75,6 +75,6 @@ class ClassroomController extends Controller
     {
         $classroom = Classroom::find($id);
         $classroom->delete();
-        return back()->with('message', $classroom->classroom_name . 'を削除しました！');
+        return back()->with('flash_message', $classroom->classroom_name . 'を削除しました！');
     }
 }
