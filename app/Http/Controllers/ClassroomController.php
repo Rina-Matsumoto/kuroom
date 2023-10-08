@@ -7,6 +7,7 @@ use App\Models\Day;
 use App\Models\Time;
 use App\Models\Reserve;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClassroomRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ClassroomController extends Controller
@@ -46,11 +47,8 @@ class ClassroomController extends Controller
         return view('admin.create')->with(['days' => $day->get(), 'times' => $time->get()]);
     }
     
-    public function store(Request $request, Classroom $classroom, Day $day, Time $time)
+    public function store(ClassroomRequest $request, Classroom $classroom, Day $day, Time $time)
     {
-        if(empty($request['classroom']['classroom_name'])){
-            return back()->with('message', "教室名を入力してください");
-        }
         Auth::user();
         $a = Classroom::where([
             'classroom_name' => $request['classroom']['classroom_name'],

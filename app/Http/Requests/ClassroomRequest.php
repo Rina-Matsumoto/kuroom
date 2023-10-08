@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ClassroomRequest extends FormRequest
 {
@@ -25,20 +26,11 @@ class ClassroomRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        $validate = [];
-
-        $validate += [
-            'classroom_id' => [
-                Rule::exists('classrooms')->where(function ($query) use ($request) {
-                    $query->where([
-                        ['classroom_id', $request->classroom_id],
-                        ['day_id', $request->day_id],
-                        ['time_id', $request->time_id]
-                    ]);
-                })
-            ]
+       return [
+            'classroom.classroom_name' => 'required',
+            'classroom.min_reserve_num' => 'required | numeric',
+            'classroom.day_id' => 'required | numeric',
+            'classroom.time_id' => 'required | numeric',
         ];
-
-        return $validate;
     }
 }

@@ -18,6 +18,11 @@
                         <div class="flex mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                             <a href="/user/comment/{{$classroom->id}}"><p>{{ $classroom->classroom_name }}</p></a>
                         </div>
+                        
+                        <div class="flex mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                            <p>{{$classroom->min_reserve_num}}人から予約できます</p>
+                        </div>
+                        
                         <div class="flex mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                             <a href="/user/reserve/{{$classroom->id}}">予約する</a>
                         </div>
