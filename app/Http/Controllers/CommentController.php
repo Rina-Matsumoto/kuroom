@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CommentController extends Controller
 {
@@ -18,9 +19,10 @@ class CommentController extends Controller
     
     public function index(Request $request, Comment $comment, Classroom $classroom)
     {
+        $today = Carbon::today();
         if($request->session()->missing('user_identifier')){ session(['user_identifier' => Str::random(20)]); }
        
-        return view('user.comment')->with(['comments' => $comment->where("classroom_id", "=", $classroom->id)->get(), 'classrooms' => $classroom->get(), 'user_identifier']);
+        return view('user.comment')->with(['comments' => $comment->where("classroom_id", "=", $classroom->id)->whereDate('created_at', $today)->get(), 'classrooms' => $classroom->get(), 'user_identifier']);
     }
     
     public function create()
