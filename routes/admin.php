@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ReserveController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -28,6 +29,7 @@ Route::middleware('auth:admins')->group(function () {
         Route::post('/create', [ClassroomController::class, 'store']);
         Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
         Route::post('/destroy{id}', [ClassroomController::class, 'destroy'])->name('classroom.destroy');
+        Route::get('/reservation', [ReserveController::class ,'reserve'])->name('reservation');
 });
 
 Route::middleware('guest:admins')->group(function () {

@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\NewPasswordController;
 //use App\Http\Controllers\ProfileController as ProfileOfAdminController;
 
-Route::get('/admin/reservation', function () {
-    return view('admin.reservation');
-});
 
 
 

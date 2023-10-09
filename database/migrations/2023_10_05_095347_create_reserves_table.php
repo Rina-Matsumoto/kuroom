@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('admin_id');
             $table->foreignId('user_id');
             $table->foreignId('classroom_id');
+            $table->string('classroom_name')->nullable();
             $table->timestamps();
         });
     }
