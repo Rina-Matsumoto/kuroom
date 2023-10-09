@@ -13,11 +13,14 @@ use Carbon\Carbon;
 
 class ReserveController extends Controller
 {
-    public function index(Day $day, Time $time, $classroom)
+    public function index(Day $day, Time $time, $classroom, Reserve $reserve)
     {
+        // reservesテーブルからclassroom_idが$classroom(パラメータで渡されたclassroomのid)のものを取得する。
+        $reserve_data = $reserve->where([["classroom_id", "=", $classroom]])->get();
+        // dd($reserve_data);
         $tomorrow = Carbon::tomorrow();
         $max = Carbon::parse('+1 week');
-        return view('user.reserve')->with(['days' => $day->get(), 'times' => $time->get(), 'classroom' => $classroom, 'tomorrow' => $tomorrow, 'max' => $max]);  
+        return view('user.reserve')->with(['days' => $day->get(), 'times' => $time->get(), 'classroom' => $classroom, 'tomorrow' => $tomorrow, 'max' => $max, 'reserve_datas' => $reserve_data]);  
     }
     
     public function show(ReserveRequest $request, $classroom , Day $day)

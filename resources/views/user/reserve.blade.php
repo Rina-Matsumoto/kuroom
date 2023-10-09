@@ -18,6 +18,14 @@
                 });
             @endif
         </script>
+        
+        <p>
+          予約が入っている日<br>
+          @foreach($reserve_datas as $reserve)
+            {{$reserve->reserve_date}}:{{$reserve->time_id}}時間目<br>
+          @endforeach
+        </p>
+          
         <form method = "post" action = "/user/reserve/{{$classroom}}">
           @csrf
             <input type="hidden" name="reserve[user_id]" value="{{Auth::user()->id}}">
