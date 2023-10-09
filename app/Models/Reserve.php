@@ -18,7 +18,8 @@ class Reserve extends Model
         'text',
         'admin_id',
         'user_id',
-        'classroom_id'
+        'classroom_id',
+        'classroom_name'
     ];
     
     public function emptyRooms()   
@@ -29,5 +30,10 @@ class Reserve extends Model
     public function users()   
     {
         return $this->hasMany(User::class);  
+    }
+    
+    public function classrooms()   
+    {
+        return $this->hasMany(Classroom::class);  
     }
 }

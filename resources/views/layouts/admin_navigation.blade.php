@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('時間割表') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.reservation')" :active="request()->routeIs('admin.reservation')">
+                        {{ __('予約リスト一覧') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -88,6 +91,10 @@
                 
                 <x-responsive-nav-link :href="route('admin.index')">
                     {{ __('時間割表') }}
+                </x-responsive-nav-link>
+                
+                <x-responsive-nav-link :href="route('admin.reservation')">
+                    {{ __('予約リスト一覧') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

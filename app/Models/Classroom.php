@@ -58,4 +58,9 @@ class Classroom extends Model
     {
         return $this->destroy($id);
     }
+    
+    public function reserves()   
+    {
+        return $this->hasMany(Reserve::class);  
+    }
 }

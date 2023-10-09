@@ -42,8 +42,10 @@ class ReserveController extends Controller
        
     }
     
-    public function store(Request $request, $classroom, Reserve $reserve)
+    public function store(Request $request, $classroom, Reserve $reserve, Classroom $classroom_instans)
     {
+        // classroomsテーブルのインスタンスからidが$classroomのデータを取得する
+        $classroom_data = $classroom_instans->where([["id", "=", $classroom]])->first();
         // $requestにbackがあれば（修正するが押されれば）、入力値と共に入力画面にリダイレクトする。そうでなければ、保存する。
         if ($request->has('back')) {
             return redirect('/user/reserve/$classroom')->withInput($request->all());
@@ -53,9 +55,15 @@ class ReserveController extends Controller
             $reserve->admin_id = $user->id;
             $reserve->user_id = $user->id;
             $reserve->classroom_id = $classroom;
+            $reserve->classroom_name = $classroom_data->classroom_name;
             $form = $request['reserve'];
             $reserve->fill($form)->save();
             return view('user.complete');
         }
+    }
+    
+    public function reserve(Reserve $reserve)
+    {
+       return view('admin.reservation')->with(['reserves' => $reserve->get()]);
     }
 }

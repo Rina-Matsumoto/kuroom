@@ -8,55 +8,34 @@
   </head>
   <body>
       <h1>予約リスト</h1>
-      <div class="row">
-      　<div class="col">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>2023年</option>
-                 <option value="1">月</option>
-                 <option value="2">火</option>
-                 <option value="3">水</option>
-                 <option value="4">木</option>
-                 <option value="5">金</option>
-                 <option value="6">土</option>
-                 <option value="7">日</option>
-            </select>
-      　</div>
-      　<div class="col">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>1月</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-            </select>
-      　</div>
-    　</div>
+     <!-- <div class="row">-->
+     <!-- 　<div class="col">-->
+     <!--       <select name="year" class="form-select">-->
+     <!--         @for($i = date('Y'); $i >= date('Y') - 1; $i--) <option value="{{ $i }}">{{ $i }}</option> @endfor-->
+     <!--       </select>-->
+     <!-- 　</div>-->
+      　
+     <!-- 　<div class="col">-->
+     <!--       <select name="month" class="form-select">-->
+     <!--         @for($i = 1; $i <= 12; $i++) <option value="{{ $i }}">{{ $i }}</option> @endfor-->
+     <!--       </select>-->
+     <!-- 　</div>-->
+    　<!--</div>-->
       
       <table class="table">
           <tbody>
-            <tr>
-              <td>1/1(土)</td>
-              <td>
-                  月<br>
-                  3<br>
-                  Jacob<br>
-                  a@a<br>
-                  サークル
-              </td>
-            </tr>
-            <tr>
-              <td>1/1(土)</td>
-              <td>
-                  月<br>
-                  4<br>
-                  Jacob<br>
-                  a@a<br>
-                  自習
-              </td>
-            </tr>
+            @foreach($reserves as $reserve)
+              <tr>
+                <td>{{$reserve->reserve_date}}</td>
+                <td>
+                    {{$reserve->day_id}}<br>
+                    {{$reserve->user_name}}<br>
+                    {{$reserve->user_email}}<br>
+                    {{$reserve->text}}<br>
+                    {{$reserve->classroom_name}}
+                </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
         <div class="d-grid gap-2 d-md-block">
