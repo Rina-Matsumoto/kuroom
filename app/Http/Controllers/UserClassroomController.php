@@ -13,25 +13,24 @@ class UserClassroomController extends Controller
 {
     public function index(Day $day, Time $time)
     {
-        return view('user.index')->with(['days' => $day->get(), 'times' => $time->get()]);  
+        $days = $day->get();
+        $times = $time->get();
+        return view('user.index', compact('days', 'times'));
     }
     
     public function timetable(Day $day, Time $time)
     {
-        return view('user.timetable')->with(['days' => $day->get(), 'times' => $time->get()]);  
+        $days = $day->get();
+        $times = $time->get();
+        return view('user.timetable', compact('days', 'times'));
     }
     
-    public function show(Day $day, Time $time, Classroom $classroom)
+    public function show($day, $time, Classroom $classroom)
     {
         $admin = Auth::user();
-        return view('user.show')->with([
-            // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
-            'classrooms' => $classroom->where([
-                ["day_id", "=", $day->id], ["time_id", "=", $time->id], ["admin_id", "=", $admin->admin_id]
-            ])->get(), 
-            'days' => $day->get(), 
-            'times' => $time->get(),
-        ]);
+        // classroomsテーブルからパラメータとして渡された「day_id」と「time_id」を指定してデータを取得
+        $classrooms = $classroom->where([["day_id", $day], ["time_id", $time], ["admin_id", $admin->admin_id]])->get();
+        return view('user.show', compact('classrooms'));
     }
     
     /**public function create(Day $day, Time $time)

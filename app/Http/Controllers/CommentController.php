@@ -20,9 +20,10 @@ class CommentController extends Controller
     public function index(Request $request, Comment $comment, Classroom $classroom)
     {
         $today = Carbon::today();
+        $comments = $comment->where("classroom_id", $classroom->id)->whereDate('created_at', $today)->get();
         if($request->session()->missing('user_identifier')){ session(['user_identifier' => Str::random(20)]); }
        
-        return view('user.comment')->with(['comments' => $comment->where("classroom_id", "=", $classroom->id)->whereDate('created_at', $today)->get(), 'classrooms' => $classroom->get(), 'user_identifier']);
+        return view('user.comment', compact('comments'))->with(['classrooms' => $classroom->get(), 'user_identifier']);
     }
     
     public function create()
@@ -32,12 +33,12 @@ class CommentController extends Controller
     
     public function store(Request $request, Classroom $classroom)
     {
-         session(['users_identifier' => $request->user_identifier]);
-         $comment = new Comment();
-         $comment->classroom_id = $classroom->id;
-         $form = $request->all();
-         $comment->fill($form)->save();
-         return redirect('/user/comment/' . $classroom->id);
+        session(['users_identifier' => $request->user_identifier]);
+        $comment = new Comment();
+        $comment->classroom_id = $classroom->id;
+        $form = $request->all();
+        $comment->fill($form)->save();
+        return redirect('/user/comment/' . $classroom->id);
     }
     
     public function show($id)

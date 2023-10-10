@@ -21,7 +21,7 @@
         
         <p>
           予約が入っている日<br>
-          @foreach($reserve_datas as $reserve)
+          @foreach($reserve_data as $reserve)
             {{$reserve->reserve_date}}:{{$reserve->time_id}}時間目<br>
           @endforeach
         </p>
