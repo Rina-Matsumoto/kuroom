@@ -11,6 +11,9 @@
     <body>
         <h3 class="relative w-full text-2xl font-semibold">時間割</h3>
         <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl">
+            @if(session('message'))
+                {{session('message')}}
+            @endif
                 <div class="p-2">
                     <div class="mt-4">
                         <div class="content">
