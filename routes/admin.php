@@ -18,19 +18,23 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admins', 'verified'])->name('dashboard');
 
-Route::middleware('auth:admins')->group(function () {
-        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('profile.destroy');
-        Route::get('/index', [ClassroomController::class ,'index'])->name('index');
-        Route::get('/show/{day}/{time}', [ClassroomController::class ,'show'])->name('show');
-        Route::get('/show/{day}/{time}/{classroom}/edit', [ClassroomController::class ,'edit'])->name('edit');
-        Route::get('/create', [ClassroomController::class ,'create']);
-        Route::post('/create', [ClassroomController::class, 'store']);
-        Route::put('/update/{classroom}', [ClassroomController::class, 'update'])->name('update');
-        Route::post('/destroy{id}', [ClassroomController::class, 'destroy'])->name('classroom.destroy');
-        Route::get('/reservation', [ReserveController::class ,'reserve'])->name('reservation');
+Route::middleware('auth:admins')->controller(AdminProfileController::class)->group(function () {
+        Route::get('/profile', 'edit')->name('profile.edit');
+        Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
 });
+
+Route::middleware('auth:admins')->controller(ClassroomController::class)->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/show/{day}/{time}', 'show')->name('show');
+        Route::get('/show/{day}/{time}/{classroom}/edit', 'edit')->name('edit');
+        Route::get('/create', 'create');
+        Route::post('/create', 'store');
+        Route::put('/update/{classroom}', 'update')->name('update');
+        Route::post('/destroy{id}', 'destroy')->name('classroom.destroy');
+});        
+
+Route::get('/reservation', [ReserveController::class ,'reserve'])->name('reservation');
 
 Route::middleware('guest:admins')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])

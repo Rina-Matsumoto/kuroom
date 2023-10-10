@@ -17,8 +17,6 @@ Route::get('/admin', function () {
     return view('admin.auth.login');
 });
 
-
-
  Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
                 ->name('password.reset');
 
