@@ -11,18 +11,30 @@ use Illuminate\Support\Facades\Auth;
 
 class UserClassroomController extends Controller
 {
-    public function index(Day $day, Time $time)
+    public function index(Day $day, Time $time, Subject $subject)
     {
         $days = $day->get();
+        // dd($days);
         $times = $time->get();
-        return view('user.index', compact('days', 'times'));
+        $subjects = $subject->get();
+        // dd($subjects);
+        return view('user.index', compact('days', 'times', 'subjects'));
     }
     
-    public function timetable(Day $day, Time $time)
+    public function timetable(Day $day, Time $time, Subject $subject)
     {
+        $user = Auth::user();
         $days = $day->get();
         $times = $time->get();
-        return view('user.timetable', compact('days', 'times'));
+        $subjects = $subject->get();
+        return view('user.timetable', compact('days', 'times', 'subjects'));
+        
+        
+        
+        
+    
+        
+        
     }
     
     public function show($day, $time, Classroom $classroom)
